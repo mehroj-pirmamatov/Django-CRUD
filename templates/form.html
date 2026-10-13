@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+<h2>{% if book %}Tahrirlash{% else %}Yangi kitob qo'shish{% endif %}</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <p>
+    <input
+      type="text"
+      name="name"
+      value="{{ book.name|default:''}}"
+      placeholder="Kitob nomi"
+      required
+    />
+  </p>
+  <p>
+    <input
+      type="text"
+      name="author"
+      value="{{ book.author|default:''}}"
+      placeholder="Muallif"
+    />
+  </p>
+  <p>
+    <textarea name="info" placeholder="Ma'lumot">
+{{ book.info|default:''}}</textarea
+    >
+  </p>
+
+  <p>
+    <input
+      type="number"
+      name="price"
+      value="{{book.price|default:0}}"
+      placeholder="Narxi"
+    />
+  </p>
+  <button type="submit">Saqlash</button>
+</form>
+
+<br />
+<button>
+  <a href="{% url 'index' %}">Orqaga qaytish</a>
+</button>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<div class="row mb-3">
+  <div class="col">
+    <h3>Kitoblar ro'yxati</h3>
+  </div>
+  <div class="col text-end">
+    <a href="{% url 'create' %}" class="btn btn-sm btn-success">+ create</a>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nomi</th>
+      <th>Muallif</th>
+      <th>Narxi</th>
+      <th>Amallar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in books %}
+    <tr>
+      <td>{{ b.name }}</td>
+      <td>{{ b.author }}</td>
+      <td>{{ b.price }} so'm</td>
+      <td>
+        <a href="{% url 'update' b.id %}" class="btn btn-sm btn-warning"
+          >Edit</a
+        >
+        <a href="{% url 'delete' b.id %}" class="btn btn-sm btn-danger">Del</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
