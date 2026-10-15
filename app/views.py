@@ -28,9 +28,7 @@ def update(request, pk):
     return render(request, "form.html", {"book": book})
 
 
-def delete(request, pk):
-    get_object_or_404(Book, id=pk).delete()
-    return redirect('index')
+
 
 
 
